@@ -1,7 +1,7 @@
 import pygame
 from Board import Board
 
-#initialize
+# initialize
 pygame.init()
 
 HEIGHT = 600
@@ -45,19 +45,19 @@ while is_running:
 
         if event.type == pygame.KEYDOWN:
             if event.key == pygame.K_DOWN:
-                game_board.move_verticly(is_down=True)
+                game_board.down_move()
                 print(game_board)
 
             if event.key == pygame.K_UP:
-                game_board.move_verticly(is_down=False)
+                game_board.up_move()
                 print(game_board)
 
             if event.key == pygame.K_RIGHT:
-                game_board.move_horizontally(is_right=True)
+                game_board.right_move()
                 print(game_board)
 
             if event.key == pygame.K_LEFT:
-                game_board.move_horizontally(is_right=False)
+                game_board.left_move()
                 print(game_board)
 
 
