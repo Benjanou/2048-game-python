@@ -166,3 +166,42 @@ class Board:
         if legal:
             self.add_rand_square()
 
+    def is_lost(self):
+        board = self.board
+
+        for i in range(len(board)):
+            for j in range(len(board[i])):
+                if board[i][j] is None:
+                    return False
+        if self.has_a_merge():
+            return False
+        self.transpose()
+        if not self.has_a_merge():
+            self.transpose()
+            return True
+        self.transpose()
+        return False
+
+
+    def has_a_merge(self):
+        board = self.board
+        flag = False
+
+        for i in range(len(board)):
+            for j in range(1,len(board[i])):
+                current = board[i][j]
+                previous = board[i][j-1]
+                if (current is not None) & (previous is not None):
+                    if current.value == previous.value:
+                        flag = True
+        return flag
+
+    def has_won(self):
+        board = self.board
+        for i in range(len(board)):
+            for j in range(len(board[i])):
+                if board[i][j] is not None:
+                    if board[i][j].value >= 2048:
+                        return True
+        return False
+

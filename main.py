@@ -32,6 +32,13 @@ def draw_game(board):
             text_y = y + 0.5*square_height - 2*margin
             screen.blit(text_surf, (text_x, text_y))
 
+def game_over(text):
+    font_over = pygame.font.SysFont("Calibri", 100, bold=True)
+    text_surf = font_over.render(text, True, (0, 0, 0))
+    text_x = 20
+    text_y = HEIGHT/2
+    screen.blit(text_surf, (text_x, text_y))
+
 
 game_board = Board()
 draw_game(game_board)
@@ -62,6 +69,18 @@ while is_running:
 
 
     draw_game(game_board)
+    if game_board.is_lost():
+        game_over("Game Over")
+        if event.type == pygame.KEYDOWN:
+            if event.key == pygame.K_RETURN:
+                is_running = False
+
+    if game_board.has_won():
+        game_over("Congrats")
+        if event.type == pygame.KEYDOWN:
+            if event.key == pygame.K_RETURN:
+                is_running = False
     pygame.display.update()
+
 
 
