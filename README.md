@@ -4,4 +4,3 @@ To Do:
 
 - add tests
 - change color of the newly generated tile
-- add end game stop message (loss/win)
